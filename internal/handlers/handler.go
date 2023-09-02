@@ -40,6 +40,8 @@ func NewAccountHandler(e *echo.Echo, us model.AccountService) {
 	e.GET("/accounts", handler.GetAllAccount)
 	// e.POST("/accounts/register", handler.RegisterAccount)
 	e.GET("/accounts/:account_no", handler.GetAccountByAccountNo)
+	e.GET("/accounts-limit/:account_no", handler.GetDailyLimit)
+	e.GET("/accounts-daily-limit/:account_no", handler.GetSumDailyTransaction)
 	e.PUT("/accounts/:account_no", handler.UpdateAccount)
 	e.PUT("/accounts/:account_no", handler.CloseAccount)
 	e.GET("/accounts/get-count-by-status", handler.GetCountAccount)
@@ -82,6 +84,30 @@ func (a *AccountHandler) GetAccountByAccountNo(c echo.Context) error {
 	ctx := c.Request().Context()
 
 	account, err := a.AService.GetAccountByAccountNo(ctx, account_no)
+	if err != nil {
+		return c.JSON(getStatusCode(err), ResponseError{Message: err.Error()})
+	}
+
+	return c.JSON(http.StatusOK, account)
+}
+
+func (a *AccountHandler) GetDailyLimit(c echo.Context) error {
+	account_no := c.Param("account_no")
+	ctx := c.Request().Context()
+
+	account, err := a.AService.GetDailyLimit(ctx, account_no)
+	if err != nil {
+		return c.JSON(getStatusCode(err), ResponseError{Message: err.Error()})
+	}
+
+	return c.JSON(http.StatusOK, account)
+}
+
+func (a *AccountHandler) GetSumDailyTransaction(c echo.Context) error {
+	account_no := c.Param("account_no")
+	ctx := c.Request().Context()
+
+	account, err := a.AService.GetSumDailyTransaction(ctx, account_no)
 	if err != nil {
 		return c.JSON(getStatusCode(err), ResponseError{Message: err.Error()})
 	}
