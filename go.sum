@@ -58,6 +58,8 @@ github.com/fsnotify/fsnotify v1.6.0 h1:n+5WquG0fcWoWp6xPWfHdbskMCQaFnG6PfBrh1Ky4
 github.com/fsnotify/fsnotify v1.6.0/go.mod h1:sl3t1tCWJFWoRz9R8WJCbQihKKwmorjAbSClcnxKAGw=
 github.com/gamepkw/transactions-banking-microservice v0.0.0-20230902061253-636db0ff1789 h1:ebfT/eS3/yB6GRZoWzOVdkIg9Q6MK4KYcLxT6ruEMHk=
 github.com/gamepkw/transactions-banking-microservice v0.0.0-20230902061253-636db0ff1789/go.mod h1:XyVrRopPVPPvxn86VtInA15eh6hYAT4ZMIzRnWdAq8c=
+github.com/gamepkw/transactions-banking-microservice v0.0.0-20230902064719-63aa39b69312 h1:+8D9D5bJuxzKnrWXY2FhfsJXqErVWso07f4ftw6LApM=
+github.com/gamepkw/transactions-banking-microservice v0.0.0-20230902064719-63aa39b69312/go.mod h1:TC33tkg1nhlXA5+11JxWNhVIVAwluviCiEyjcfZeO3M=
 github.com/go-gl/glfw v0.0.0-20190409004039-e6da0acd62b1/go.mod h1:vR7hzQXu2zJy9AVAgeJqvqgH9Q5CA+iKCZ2gyEVpxRU=
 github.com/go-gl/glfw/v3.3/glfw v0.0.0-20191125211704-12ad95a8df72/go.mod h1:tQ2UAYgL5IevRw8kRxooKSPJfGvJ9fJQFa0TUsXzTg8=
 github.com/go-gl/glfw/v3.3/glfw v0.0.0-20200222043503-6f7a984d4dc4/go.mod h1:tQ2UAYgL5IevRw8kRxooKSPJfGvJ9fJQFa0TUsXzTg8=

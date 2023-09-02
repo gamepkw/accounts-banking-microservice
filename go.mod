@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
-	github.com/gamepkw/transactions-banking-microservice v0.0.0-20230902061253-636db0ff1789 // indirect
+	github.com/gamepkw/transactions-banking-microservice v0.0.0-20230902064719-63aa39b69312 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-redis/redis v6.15.9+incompatible // indirect
