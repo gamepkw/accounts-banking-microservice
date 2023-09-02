@@ -8,7 +8,7 @@ import (
 	"time"
 
 	model "github.com/gamepkw/accounts-banking-microservice/internal/models"
-	transactionModel "github.com/gamepkw/transactions-banking-microservice/internal/models"
+	transactionModel "github.com/gamepkw/transactions-banking-microservice/models"
 
 	"github.com/go-redis/redis"
 )
@@ -21,7 +21,7 @@ type accountService struct {
 }
 
 // NewAccountService will create new an accountService object representation of model.AccountService interface
-func NewAccountService(ar model.AccountRepository, tr model.TransactionRepository, redis *redis.Client, timeout time.Duration) model.AccountService {
+func NewAccountService(ar model.AccountRepository, tr transactionModel.TransactionRepository, redis *redis.Client, timeout time.Duration) model.AccountService {
 	return &accountService{
 		accountRepo:     ar,
 		transactionRepo: tr,
