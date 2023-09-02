@@ -8,7 +8,7 @@ import (
 	"time"
 
 	model "github.com/gamepkw/accounts-banking-microservice/internal/models"
-	transactionModel "github.com/gamepkw/transactions-banking-microservice/shared_model"
+	transactionModel "github.com/gamepkw/transactions-banking-microservice/models"
 
 	"github.com/go-redis/redis"
 )
