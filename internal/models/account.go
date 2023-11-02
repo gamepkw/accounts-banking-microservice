@@ -1,7 +1,6 @@
 package model
 
 import (
-	"context"
 	"time"
 )
 
@@ -22,28 +21,4 @@ type Account struct {
 type CountAccount struct {
 	Status string `json:"status,"`
 	Count  int    `json:"count"`
-}
-
-type AccountService interface {
-	GetAllAccount(ctx context.Context, cursor string, num int64) ([]Account, string, error)
-	GetAccountByAccountNo(ctx context.Context, account_no string) (*Account, error)
-	UpdateAccount(ctx context.Context, ar *Account) error
-	RegisterAccount(context.Context, *Account) error
-	DeleteAccount(ctx context.Context, account_no string) error
-	GetCountAccount(ctx context.Context) (map[string]int, error)
-	ValidateAccount(ctx context.Context, ar *Account) error
-	GetAllAccountByUuid(c context.Context, uuid string) (res *[]Account, err error)
-	GetDailyLimit(c context.Context, account_no string) (float64, error)
-	GetSumDailyTransaction(c context.Context, account_no string) (float64, error)
-}
-
-type AccountRepository interface {
-	GetAllAccount(ctx context.Context, cursor string, num int64) (res []Account, nextCursor string, err error)
-	GetAccountFromRedisByAccountNo(ctx context.Context, account_no string) (*Account, error)
-	GetAccountByAccountNo(ctx context.Context, account_no string) (*Account, error)
-	UpdateAccount(ctx context.Context, ar *Account) error
-	RegisterAccount(ctx context.Context, a *Account) error
-	GetCountAccountByStatus(ctx context.Context) (result map[string]int, err error)
-	DeleteAccount(ctx context.Context, account_no string) error
-	GetAllAccountByUuid(ctx context.Context, uuid string) (res *[]Account, err error)
 }

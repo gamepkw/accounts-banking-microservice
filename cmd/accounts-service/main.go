@@ -37,7 +37,7 @@ func main() {
 		AllowMethods: []string{http.MethodGet, http.MethodPut, http.MethodPost, http.MethodDelete},
 	}))
 
-	accountrepo := _accountRepo.NewMysqlAccountRepository(dbConn, redis)
+	accountrepo := _accountRepo.NewaccountRepository(dbConn, redis)
 
 	timeoutContext := time.Duration(viper.GetInt("context.timeout")) * time.Second
 	accountService := _accountService.NewAccountService(accountrepo, transactionRepo, redis, timeoutContext)
