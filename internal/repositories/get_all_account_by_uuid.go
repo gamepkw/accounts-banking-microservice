@@ -2,9 +2,9 @@ package repository
 
 import (
 	"context"
-	"fmt"
 
 	model "github.com/gamepkw/accounts-banking-microservice/internal/models"
+	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 )
 
@@ -24,8 +24,6 @@ func (m *accountRepository) fetchAllAccountFromDatabaseByUuid(ctx context.Contex
 		logrus.Error(err)
 		return nil, err
 	}
-
-	fmt.Println(uuid)
 
 	accounts = make([]model.Account, 0)
 
@@ -47,7 +45,7 @@ func (m *accountRepository) fetchAllAccountFromDatabaseByUuid(ctx context.Contex
 		)
 		if err != nil {
 			logrus.Error(err)
-			return accounts, err
+			return accounts, errors.Wrap(err, "error scan")
 		}
 		accounts = append(accounts, account)
 	}

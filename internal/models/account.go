@@ -18,6 +18,11 @@ type Account struct {
 	IsClosed  int        `json:"is_closed,omitempty"`
 }
 
+type ElasticSearchAccount struct {
+	AccountNo string `json:"account_no"`
+	Bank      string `json:"bank"`
+}
+
 type CountAccount struct {
 	Status string `json:"status,"`
 	Count  int    `json:"count"`

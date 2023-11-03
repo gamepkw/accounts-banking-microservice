@@ -9,7 +9,7 @@ import (
 func (a *AccountHandler) GetCountAccount(c echo.Context) error {
 	ctx := c.Request().Context()
 
-	list, err := a.AService.GetCountAccount(ctx)
+	list, err := a.accountService.GetCountAccount(ctx)
 	if err != nil {
 		return c.JSON(getStatusCode(err), ResponseError{Message: err.Error()})
 	}

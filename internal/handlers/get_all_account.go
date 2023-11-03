@@ -13,8 +13,7 @@ func (a *AccountHandler) GetAllAccount(c echo.Context) error {
 	cursor := c.QueryParam("cursor")
 
 	ctx := c.Request().Context()
-	// listAr, nextCursor, err := a.AService.Fetch(ctx, cursor, int64(num))
-	listAr, nextCursor, err := a.AService.GetAllAccount(ctx, cursor, int64(num))
+	listAr, nextCursor, err := a.accountService.GetAllAccount(ctx, cursor, int64(num))
 	if err != nil {
 		return c.JSON(getStatusCode(err), ResponseError{Message: err.Error()})
 	}

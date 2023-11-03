@@ -6,18 +6,22 @@ import (
 
 	model "github.com/gamepkw/accounts-banking-microservice/internal/models"
 
+	"github.com/elastic/go-elasticsearch/v8"
+
 	"github.com/go-redis/redis"
 )
 
 type accountRepository struct {
-	conn  *sql.DB
-	redis *redis.Client
+	conn    *sql.DB
+	redis   *redis.Client
+	elastic *elasticsearch.Client
 }
 
-func NewaccountRepository(conn *sql.DB, redis *redis.Client) AccountRepository {
+func NewAccountRepository(conn *sql.DB, redis *redis.Client, elastic *elasticsearch.Client) AccountRepository {
 	return &accountRepository{
-		conn:  conn,
-		redis: redis,
+		conn:    conn,
+		redis:   redis,
+		elastic: elastic,
 	}
 }
 
@@ -30,4 +34,6 @@ type AccountRepository interface {
 	GetCountAccountByStatus(ctx context.Context) (result map[string]int, err error)
 	DeleteAccount(ctx context.Context, account_no string) error
 	GetAllAccountByUuid(ctx context.Context, uuid string) (res *[]model.Account, err error)
+	GetConfig(ctx context.Context, configName string) (string, error)
+	ElasticSearchAccountByAccountNo(ctx context.Context, account model.ElasticSearchAccount) (*[]string, error)
 }

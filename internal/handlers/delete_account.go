@@ -17,7 +17,7 @@ func (a *AccountHandler) CloseAccount(c echo.Context) error {
 	sender := string(idP)
 	ctx := c.Request().Context()
 
-	err = a.AService.DeleteAccount(ctx, sender)
+	err = a.accountService.DeleteAccount(ctx, sender)
 	if err != nil {
 		return c.JSON(getStatusCode(err), ResponseError{Message: err.Error()})
 	}

@@ -106,7 +106,7 @@ func main() {
 
 	e := echo.New()
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins: []string{"http://localhost:3001", "http://localhost:3000", "http://localhost:8070"},
+		AllowOrigins: []string{"http://localhost:3001", "http://localhost:3000", "http://localhost:8090"},
 		AllowMethods: []string{http.MethodGet, http.MethodPut, http.MethodPost, http.MethodDelete},
 	}))
 	timeoutContext := time.Duration(viper.GetInt("context.timeout")) * time.Second

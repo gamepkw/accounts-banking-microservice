@@ -4,6 +4,7 @@ import (
 	"context"
 
 	model "github.com/gamepkw/accounts-banking-microservice/internal/models"
+	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 )
 
@@ -38,7 +39,7 @@ func (m *accountRepository) GetCountAccountByStatus(ctx context.Context) (result
 		)
 
 		if err != nil {
-			return nil, err
+			return nil, errors.Wrap(err, "error scan")
 		}
 
 		statusCounts[countAccount.Status] = countAccount.Count

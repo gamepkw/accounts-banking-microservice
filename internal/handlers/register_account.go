@@ -26,11 +26,11 @@ func (a *AccountHandler) RegisterAccount(c echo.Context) (err error) {
 
 	ctx := c.Request().Context()
 
-	if err = a.AService.RegisterAccount(ctx, &account); err != nil {
+	if err = a.accountService.RegisterAccount(ctx, &account); err != nil {
 		return c.JSON(getStatusCode(err), ResponseError{Message: err.Error()})
 	}
 
-	res, err := a.AService.GetAccountByAccountNo(ctx, account.AccountNo)
+	res, err := a.accountService.GetAccountByAccountNo(ctx, account.AccountNo)
 	if err != nil {
 		return c.JSON(getStatusCode(err), ResponseError{Message: err.Error()})
 	}

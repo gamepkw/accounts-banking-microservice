@@ -20,10 +20,10 @@ func (a *AccountHandler) UpdateAccount(c echo.Context) (err error) {
 	}
 
 	ctx := c.Request().Context()
-	err = a.AService.UpdateAccount(ctx, &account)
+	err = a.accountService.UpdateAccount(ctx, &account)
 	if err != nil {
 		return c.JSON(getStatusCode(err), ResponseError{Message: err.Error()})
 	}
 
-	return c.JSON(http.StatusCreated, AccountResponse{Message: "Update account successfully", Body: &account})
+	return c.JSON(http.StatusOK, AccountResponse{Message: "Update account successfully", Body: &account})
 }

@@ -12,27 +12,28 @@ import (
 )
 
 type AccountHandler struct {
-	AService accountService.AccountService
+	accountService accountService.AccountService
 }
 
-func NewAccountHandler(e *echo.Echo, us accountService.AccountService) {
+func NewAccountHandler(e *echo.Echo, accountService accountService.AccountService) {
 	handler := &AccountHandler{
-		AService: us,
+		accountService: accountService,
 	}
+	middL := middleware.InitMiddleware()
 	restrictedGroup := e.Group("/users/accounts")
-	restrictedGroup.Use(middleware.CustomJWTMiddleware)
+	restrictedGroup.Use(middleware.CustomJWTMiddleware, middL.RateLimitMiddlewareForTransaction)
 
 	e.GET("/accounts", handler.GetAllAccount)
-	// e.POST("/accounts/register", handler.RegisterAccount)
+	e.POST("/accounts/register", handler.RegisterAccount)
 	e.GET("/accounts/:account_no", handler.GetAccountByAccountNo)
-	e.GET("/accounts-limit/:account_no", handler.GetDailyLimit)
-	e.GET("/accounts-daily-limit/:account_no", handler.GetSumDailyTransaction)
-	e.PUT("/accounts/:account_no", handler.UpdateAccount)
+	e.PUT("/accounts/update", handler.UpdateAccount)
 	e.PUT("/accounts/:account_no", handler.CloseAccount)
 	e.GET("/accounts/get-count-by-status", handler.GetCountAccount)
 
 	restrictedGroup.GET("/get-all-account", handler.GetAllAccountByUuid)
+	restrictedGroup.GET("/get-daily-remaining-amount/:account_no", handler.GetDailyRemainingAmount)
 	restrictedGroup.POST("/register", handler.RegisterAccount)
+	restrictedGroup.POST("/search", handler.ElasticSearchAccountByAccountNo)
 }
 
 type ResponseError struct {

@@ -8,6 +8,7 @@ import (
 
 	model "github.com/gamepkw/accounts-banking-microservice/internal/models"
 	"github.com/go-redis/redis"
+	"github.com/pkg/errors"
 )
 
 func (m *accountRepository) GetAccountByAccountNo(ctx context.Context, account_no string) (res *model.Account, err error) {
@@ -24,7 +25,7 @@ func (m *accountRepository) fetchAccountFromDatabase(ctx context.Context, accoun
 
 	list, err := m.getAllAccount(ctx, query, account_no)
 	if err != nil {
-		return model.Account{}, err
+		return model.Account{}, errors.Wrap(err, "error fetch account from database")
 	}
 
 	if len(list) > 0 {
@@ -72,8 +73,9 @@ func (m *accountRepository) parseAccountFromCache(cachedContact string) (*model.
 	var account model.Account
 	err := json.Unmarshal([]byte(cachedContact), &account)
 	if err != nil {
-		return nil, fmt.Errorf("error parsing user from cache: %v", err)
+		return nil, errors.Wrap(err, "error parsing user from cache")
 	}
+
 	return &account, nil
 }
 

@@ -35,3 +35,30 @@ func (a *accountService) GenerateAccountNo(c context.Context, m *model.Account) 
 
 	return
 }
+
+func (a *accountService) SelectBank(lastDigit string) (bank string) {
+	switch lastDigit {
+	case "1":
+		return "KBANK"
+	case "2":
+		return "KTB"
+	case "3":
+		return "SCB"
+	case "4":
+		return "BAY"
+	case "5":
+		return "TMB"
+	case "6":
+		return "GSB"
+	case "7":
+		return "TBANK"
+	case "8":
+		return "TISCO"
+	case "9":
+		return "BBL"
+	case "0":
+		return "UOB"
+	}
+
+	return ""
+}

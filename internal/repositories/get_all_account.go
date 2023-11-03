@@ -5,6 +5,7 @@ import (
 
 	model "github.com/gamepkw/accounts-banking-microservice/internal/models"
 	repository "github.com/gamepkw/accounts-banking-microservice/internal/repositories/helper"
+	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 )
 
@@ -31,9 +32,6 @@ func (m *accountRepository) getAllAccount(ctx context.Context, query string, arg
 		err = rows.Scan(
 			&account.AccountNo,
 			&account.Uuid,
-			&account.Name,
-			&account.Email,
-			&account.Tel,
 			&account.Balance,
 			&account.Bank,
 			&account.Status,
@@ -43,7 +41,7 @@ func (m *accountRepository) getAllAccount(ctx context.Context, query string, arg
 		)
 		if err != nil {
 			logrus.Error(err)
-			return accounts, err
+			return accounts, errors.Wrap(err, "error scan")
 		}
 		accounts = append(accounts, account)
 	}
